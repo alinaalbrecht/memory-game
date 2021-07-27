@@ -1,0 +1,26 @@
+.game-board {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.game-tile {
+  padding: 20px;
+  background-color: #7fb0ff;
+  border-radius: 10px;
+  .game-tile__portrait {
+    height: 186px;
+    width: 160px;
+    border-radius: 10px;
+    background-color: blueviolet;
+    overflow: hidden;
+    img {
+      object-fit: cover;
+    }
+  }
+  .game-tile__name {
+    padding-top: 20px;
+  }
+}
