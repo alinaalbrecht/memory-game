@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Score } from "./Components/Score";
 import { GameBoard } from "./Components/GameBoard";
 import { PassFail } from "./Components/PassFail";
@@ -191,17 +191,16 @@ const App = () => {
   const [chosenPresidents, setChosenPresidents] = useState([]);
   const [roundPresidents, setRoundPresidents] = useState([]);
   const [currentScore, setCurrentScore] = useState(0);
-  const [didPass, setDidPass] = useState(true);
+  const [didPass, setDidPass] = useState("");
   const [bestScore, setBestScore] = useState(0);
 
   /* when component mounts generate random presidents gameboard */
-  useEffect(() => {
-    window.addEventListener("load", generateGameBoard);
-  }, []);
 
-  useEffect(() => {
-    setCurrentScore(chosenPresidents.length);
-  }, [chosenPresidents]);
+  const updateBestScore = useCallback(() => {
+    if (currentScore > bestScore) {
+      setBestScore(currentScore);
+    }
+  }, [bestScore, currentScore]);
 
   const generateGameBoard = () => {
     let randomPresidents = [...presidents];
@@ -224,10 +223,26 @@ const App = () => {
     } else {
       const updateChosen = [...chosenPresidents, chosenPres];
       setChosenPresidents(updateChosen);
+      setDidPass(true);
       console.log(updateChosen);
     }
     /* setCurrentScore(chosenPresidents.length); */
   };
+
+  useEffect(() => {
+    window.addEventListener("load", generateGameBoard);
+  }, []);
+
+  useEffect(() => {
+    updateBestScore();
+    setCurrentScore(chosenPresidents.length);
+  }, [chosenPresidents, didPass, updateBestScore]);
+
+  useEffect(() => {
+    if (didPass) return;
+
+    setChosenPresidents([]);
+  }, [didPass]);
 
   return (
     <div className="App">

@@ -13,7 +13,9 @@ export const PassFail = (props) => {
     <div>
       {props.didPass === true
         ? alerts.pass[Math.floor(Math.random() * alerts.pass.length)]
-        : alerts.fail[Math.floor(Math.random() * alerts.fail.length)]}
+        : props.didPass === false
+        ? alerts.fail[Math.floor(Math.random() * alerts.fail.length)]
+        : null}
     </div>
   );
 };
