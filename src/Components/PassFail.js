@@ -11,11 +11,9 @@ const alerts = {
 export const PassFail = (props) => {
   return (
     <div>
-      {props.didPass === true
-        ? alerts.pass[Math.floor(Math.random() * alerts.pass.length)]
-        : props.didPass === false
-        ? alerts.fail[Math.floor(Math.random() * alerts.fail.length)]
-        : null}
+      {props.didPass === true &&
+        alerts.pass[Math.floor(Math.random() * alerts.pass.length)]}
+      {props.didPass === false && <div className="game-over">Game Over</div>}
     </div>
   );
 };

@@ -194,8 +194,6 @@ const App = () => {
   const [didPass, setDidPass] = useState("");
   const [bestScore, setBestScore] = useState(0);
 
-  /* when component mounts generate random presidents gameboard */
-
   const updateBestScore = useCallback(() => {
     if (currentScore > bestScore) {
       setBestScore(currentScore);
@@ -220,15 +218,23 @@ const App = () => {
     const chosenPres = e.currentTarget.id;
     if (chosenPresidents.includes(chosenPres)) {
       setDidPass(false);
+      const timeId = setTimeout(() => {
+        // After 3 seconds set the show value to false
+        setDidPass("");
+      }, 5000);
+
+      return () => {
+        clearTimeout(timeId);
+      };
     } else {
       const updateChosen = [...chosenPresidents, chosenPres];
       setChosenPresidents(updateChosen);
       setDidPass(true);
       console.log(updateChosen);
     }
-    /* setCurrentScore(chosenPresidents.length); */
   };
 
+  /* when component mounts generate random presidents gameboard */
   useEffect(() => {
     window.addEventListener("load", generateGameBoard);
   }, []);
