@@ -8,8 +8,6 @@
 }
 
 .game-over {
-  background-color: rgba(0, 0, 0, 0.8);
-  /* color: #fff; */
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -34,11 +32,8 @@
     background-color: rgba(0, 0, 0, 0.8);
     color: hsla(100, 100%, 100%, 1);
   }
-  /* from {
-      transform: translateX(0%);
-    }
-  
-    to {
-      transform: translateX(100%);
-    } */
+  100% {
+    background-color: rgba(0, 0, 0, 0);
+    color: hsla(100, 100%, 100%, 0);
+  }
 }
