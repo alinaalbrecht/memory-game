@@ -6,6 +6,7 @@ export const GameBoard = (props) => {
     <div className="game-board">
       {props.roundPresidents.map((president) => (
         <GameTile
+          key={president.id}
           president={president}
           generateGameBoard={props.generateGameBoard}
           addPresident={props.addPresident}

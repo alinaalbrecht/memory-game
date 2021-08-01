@@ -2,8 +2,6 @@ export const GameTile = (props) => {
   return (
     <div
       className="game-tile"
-      /* onClick={props.generateGameBoard} */
-      /* onClick={props.addPresident} */
       onClick={(e) => {
         props.addPresident(e);
         props.generateGameBoard();

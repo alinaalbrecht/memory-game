@@ -20,20 +20,60 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: fadein 5s linear;
+  animation: fade-in-out 5s linear;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
 }
 
-@keyframes fadein {
+@keyframes fade-in-out {
   0% {
-    background-color: rgba(0, 0, 0, 0);
-    color: hsla(100, 100%, 100%, 0);
+    opacity: 0;
   }
   50% {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: hsla(100, 100%, 100%, 1);
+    opacity: 1;
   }
   100% {
-    background-color: rgba(0, 0, 0, 0);
-    color: hsla(100, 100%, 100%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.win-alert {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fade-in 2s linear;
+  background-color: rgba(110, 187, 38, 0.8);
+  color: #fff;
+  button {
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    margin-top: 30px;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 4px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .App {
+    height: 100%;
   }
 }
