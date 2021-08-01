@@ -187,12 +187,33 @@ const presidents = [
   },
 ];
 
+const levels = [
+  {
+    rounds: 5,
+    presidents: 5,
+  },
+  {
+    rounds: 10,
+    presidents: 6,
+  },
+  {
+    rounds: 20,
+    presidents: 10,
+  },
+];
+
 const App = () => {
   const [chosenPresidents, setChosenPresidents] = useState([]);
   const [roundPresidents, setRoundPresidents] = useState([]);
-  const [currentScore, setCurrentScore] = useState(0);
+  const [levelPresidents, setLevelPresidents] = useState([]);
+
   const [didPass, setDidPass] = useState("");
+
+  const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+
+  const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentRound, setCurrentRound] = useState(1);
 
   const updateBestScore = useCallback(() => {
     if (currentScore > bestScore) {
@@ -200,7 +221,7 @@ const App = () => {
     }
   }, [bestScore, currentScore]);
 
-  const generateGameBoard = () => {
+  const generateLevelPresidents = () => {
     let randomPresidents = [...presidents];
     for (let i = randomPresidents.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -209,9 +230,25 @@ const App = () => {
         randomPresidents[i],
       ];
     }
-    const selection = randomPresidents.slice(0, 10);
-    setRoundPresidents(selection);
+    const levelIndex = levels[currentLevel].presidents;
+    const selection = randomPresidents.slice(0, levelIndex);
+    console.log(selection);
+    setLevelPresidents(selection);
+    /* generateGameBoard(); */
   };
+
+  const generateGameBoard = useCallback(() => {
+    let randomPresidents = [...levelPresidents];
+    for (let i = randomPresidents.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [randomPresidents[i], randomPresidents[j]] = [
+        randomPresidents[j],
+        randomPresidents[i],
+      ];
+    }
+    console.log(randomPresidents);
+    setRoundPresidents(randomPresidents);
+  }, [levelPresidents]);
 
   const addPresident = (e) => {
     console.log(e.currentTarget.id);
@@ -236,7 +273,7 @@ const App = () => {
 
   /* when component mounts generate random presidents gameboard */
   useEffect(() => {
-    window.addEventListener("load", generateGameBoard);
+    window.addEventListener("load", generateLevelPresidents);
   }, []);
 
   useEffect(() => {
@@ -249,6 +286,10 @@ const App = () => {
 
     setChosenPresidents([]);
   }, [didPass]);
+
+  useEffect(() => {
+    generateGameBoard();
+  }, [levelPresidents, generateGameBoard]);
 
   return (
     <div className="App">
