@@ -5,6 +5,38 @@
   text-align: center;
   padding: 20px;
   color: #fff;
+  h1 {
+    font-family: "Arvo", serif;
+    font-size: 36px;
+  }
+  .subtitle {
+    font-size: 20px;
+    padding: 4px 0 8px;
+    font-weight: 900;
+  }
+  .game-progress {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .score {
+    padding-top: 8px;
+    p {
+      &:first-child {
+        font-size: 18px;
+      }
+    }
+  }
+  .pass-alert {
+    color: #a1ff49;
+    font-family: "Arvo", serif;
+  }
+
+  .game-over,
+  .win-alert {
+    font-family: "Arvo", serif;
+    font-size: 32px;
+  }
 }
 
 .game-over {
@@ -60,7 +92,7 @@
   align-items: center;
   justify-content: center;
   animation: fade-in 2s linear;
-  background-color: rgba(110, 187, 38, 0.8);
+  background-color: #6adb00d8;
   color: #fff;
   button {
     border: 2px solid #fff;

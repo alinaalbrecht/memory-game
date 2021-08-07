@@ -11,13 +11,17 @@ const alerts = {
 export const PassFail = (props) => {
   return (
     <div>
-      {props.didWin === false &&
-        props.didPass === true &&
-        alerts.pass[Math.floor(Math.random() * alerts.pass.length)]}
+      {props.didWin === false && props.didPass === true && (
+        <p className="pass-alert">
+          {alerts.pass[Math.floor(Math.random() * alerts.pass.length)]}
+        </p>
+      )}
+
       {props.didPass === false && <div className="game-over">Game Over</div>}
+
       {props.didWin && (
         <div className="win-alert">
-          Congratulation you won!
+          Congratulations you won!
           <button onClick={props.resetGame}>play again</button>{" "}
         </div>
       )}

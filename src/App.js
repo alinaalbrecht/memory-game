@@ -387,9 +387,11 @@ const App = () => {
   return (
     <div className="App">
       <h1>U.S. Presidents Memory Game</h1>
-      <p>Don't pick the same president twice!</p>
-      <p>Level {currentLevel}</p>
-      <p>Round {currentRound}</p>
+      <p className="subtitle">Don't pick the same president twice!</p>
+      <div className="game-progress">
+        <p>Level {currentLevel}</p>
+        <p>Round {currentRound}</p>
+      </div>
       <Score currentScore={currentScore} bestScore={bestScore} />
       <PassFail didPass={didPass} didWin={didWin} resetGame={resetGame} />
       <GameBoard
